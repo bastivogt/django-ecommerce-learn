@@ -1,0 +1,25 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ecommerce - {% block title %}{% endblock %}</title>
+
+    <link rel="stylesheet" href="{% static "css/style.css" %}">
+    {% block custom_css %}{% endblock %}
+
+</head>
+<body>
+    <header>
+        {% include "includes/_navbar.html" %}
+    </header>
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+    <script src="{% static "js/jquery-3.7.1.min.js" %}"></script>
+    <script src="{% static "js/bootstrap.bundle.min.js" %}"></script>
+    <script src="{% static "js/app.js" %}"></script>
+    {% block custom_js %}{% endblock %}
+</body>
+</html>

@@ -1,0 +1,19 @@
+{% load i18n %}
+<div class="card h-100 shadow">
+    <img class="object-fit-cover d-block" style="height: 250px;" src="{{ img_src }}" class="card-img-top" alt="{{ title }}">
+    <div class="card-body">
+        <h3 class="card-title">{{ title }}</h3>
+        <div class="meta">
+            <small>
+                <strong>{% trans "Size" %}: </strong>{{ size }}
+            </small>
+        </div>
+        <p class="card-text">{{ description }}</p>
+        <div class="price fs-4">
+            {{ price }} €
+        </div>
+    </div>
+    <div class="card-footer">
+        <a class="btn btn-primary" href="{{ url }}">{% trans "More" %}</a>
+    </div>
+</div>
