@@ -18,6 +18,9 @@ class Category(BaseTimeStampMixin):
     def __str__(self):
         return self.name
     
+    def get_absolute_url(self):
+        return reverse("store:category_detail", kwargs={"slug": self.slug})
+    
     class Meta:
         verbose_name_plural = _("categories")
         ordering = [

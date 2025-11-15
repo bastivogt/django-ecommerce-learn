@@ -5,11 +5,23 @@
 
 
 {% block content %}
+    <section>
+        <div class="container py-5 text-center">
+            <h1>Ecommerce</h1>
+            <p class="lead">
+                Browse our collection.
+            </p>
+            <p>
+                <a class="btn btn-primary btn-lg" href="#">Create an account</a>
+            </p>
+        </div>
+    </section>
     <section class="bg-body-tertiary">
         <div class="container py-5">
-            <h1>Featured Products</h1>
+            <h2>Featured Products</h2>
+            <hr>
             {% if products_featured %}
-                <div class="row row-cols-1 row-cols-lg-3 g-4">
+                <div class="row row-cols-1 row-cols-lg-4 g-4">
                     {% for product in products_featured %}
                         <div class="col">
                             {% include "./includes/_product_card.html" with title=product.title description=product.short_description img_src=product.image.url url=product.get_absolute_url price=product.price size=product.size  %}
