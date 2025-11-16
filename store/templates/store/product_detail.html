@@ -18,6 +18,10 @@
                         {% if product.size %}
                             <strong>{% trans "Size" %}: </strong>{{ product.size }}
                         {% endif %}
+                        {% if product.category %}
+                            <br>
+                            <strong>{% trans "Category" %}: </strong>{{ product.category }}
+                        {% endif %}
                     </div>
                     <div class="fs-4">
                         {{ product.price }} €

@@ -22,6 +22,13 @@ def categories_list(request):
         "categories_all": categories_all
     })
 
+def categories_all(request):
+    products = models.Product.objects.all().filter(published=True)
+    return render(request, "store/categories_all.html", {
+        "title": _("All Products"),
+        "products": products
+    })
+
 def category_detail(request, slug):
     category = get_object_or_404(models.Category, slug=slug)
     products = category.products.filter(published=True)

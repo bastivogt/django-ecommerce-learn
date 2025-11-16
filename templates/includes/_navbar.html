@@ -32,9 +32,9 @@
             Categories
           </a>
 
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown" data-bs-theme="light">
             <li>
-              <a class="dropdown-item" href="{% url 'store:categories_list' %}">All</a>
+              <a class="dropdown-item" href="{% url 'store:categories_all' %}">All</a>
             </li>
             {% for category in categories_all %}
             <li>

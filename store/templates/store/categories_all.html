@@ -12,14 +12,14 @@
             <div class="row row-cols-1 row-cols-lg-4 g-4">
                 {% for product in products %}
                     <div class="col">
-                        {% include "./includes/_product_card.html" with title=product.title description=product.short_description img_src=product.image.url url=product.get_absolute_url price=product.price size=product.size category=products.category  %}
+                        {% include "./includes/_product_card.html" with title=product.title description=product.short_description img_src=product.image.url url=product.get_absolute_url price=product.price size=product.size category=product.category  %}
                     </div>
                 {% endfor %}
             </div>
         {% endif %}
         
         <div class="mt-3">
-            <a href="{% url "store:categories_list" %}">{% trans "All Categories" %}</a>
+            <a href="{% url "store:index" %}">{% trans "Home" %}</a>
         </div>
     </div>
 {% endblock %}
