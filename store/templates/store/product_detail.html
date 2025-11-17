@@ -10,7 +10,7 @@
             <div class="col-lg-6 mb-3">
                 <img class="w-100" src="{{ product.image.url }}" alt="{{ product.title }}">
             </div>
-            <div class="col-sm-6">
+            <div class="col-lg-6">
                 <h1>{{ product.title }}</h1>
                 <hr>
                 <div class="meta">
@@ -31,25 +31,59 @@
                 <p>
                     {{ product.description }}
                 </p>
-                <form action="">
-                    {% csrf_token %}
-                    <div class="mt-3">
-                        <hr>
-                        <div class="d-flex justify-content-between">
-                            <div>
-                                <strong>{% trans "Quantity" %}: </strong>
-                                <input type="number" value="1">
-                            </div>
-                            <div>
-                                <button class="btn btn-danger">{% trans "Add to cart" %}</button>
-                            </div>
+
+                <div class="mt-3">
+                    <hr>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <label>{% trans "Quantity" %}: </label>
+                            <select id="quantity-select" class="form-select">
+                                <option selected>1</option>
+                                <option value="">1</option>
+                                <option value="">2</option>
+                                <option value="">3</option>
+                                <option value="">4</option>
+                            </select>
+                        </div>
+                        <div>
+                            <button id="add-to-cart" class="btn btn-danger" value="{{ product.id }}">{% trans "Add to cart" %}</button>
                         </div>
                     </div>
-                </form>
+                </div>
+
                 <hr>
                 <a href="{{ request.META.HTTP_REFERER }}">{% trans "Back" %}</a>
             </div>
         </div>
-    </div>
-    
+    </div>   
+{% endblock %}
+
+{% block custom_js %}
+    <script>
+        $("#add-to-cart").click(function(e) {
+            e.preventDefault();
+            console.log("add-to-cart clicked");
+            console.log(e.target.value);
+            console.log($("#quantity-select option:selected").text());
+            console.log("{{ csrf_token }}");
+            $.ajax({
+                type: "POST",
+                url: "{% url 'cart:add' %}",
+                data: {
+                    product_id: e.target.value,
+                    product_quantity: $("#quantity-select option:selected").text(),
+                    csrfmiddlewaretoken: "{{ csrf_token }}",
+                    action: "POST"
+                },
+                success: function(json) {
+                    console.log(json);
+                },
+                error: function(xhr, errorMsg, error) {
+
+                }
+            });
+        });
+
+    </script>
+
 {% endblock %}
