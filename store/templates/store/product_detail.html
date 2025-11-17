@@ -62,10 +62,6 @@
     <script>
         $("#add-to-cart").click(function(e) {
             e.preventDefault();
-            console.log("add-to-cart clicked");
-            console.log(e.target.value);
-            console.log($("#quantity-select option:selected").text());
-            console.log("{{ csrf_token }}");
             $.ajax({
                 type: "POST",
                 url: "{% url 'cart:add' %}",
